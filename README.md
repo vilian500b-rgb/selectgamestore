@@ -23,6 +23,20 @@ Pre-owned PS4 / PS5 game store website (Port Said, Egypt). Single static file, n
 
 بالعربي: اضغط Live setup مرة واحدة وحط اسم حسابك على GitHub واسم المستودع و Token (الصفحة بتشرح ازاي تعمله). بعدها كل ما تعدل اضغط Publish changes والتعديلات بتظهر للعملاء بعد حوالي دقيقة بدون ما ترفع أي ملف.
 
+## Customer accounts on every device + Accounts page (Firebase, free) | الحسابات على كل الأجهزة
+
+Without this step, accounts are saved on each customer's own device only. With it, accounts work on any phone, customers stay logged in, and you (the main admin) get an **Admin settings** page where you can see everyone and make anyone an admin or remove admin. Only the main admin can do that.
+
+1. Go to https://console.firebase.google.com and create a project (free, Google account).
+2. **Build > Authentication > Get started > Sign-in method > Email/Password > Enable**.
+3. **Build > Firestore Database > Create database** (production mode, any region), then open the **Rules** tab. Open the site as admin > **Live setup** > open "Firestore rules to paste in Firebase", copy them into the Rules tab and **Publish**.
+4. **Project settings (gear) > Your apps > Web (</>) > register app** and copy the `firebaseConfig` block.
+5. On the site as admin: **Live setup**, paste it in "Customer accounts (Firebase)", Save, then press **Publish changes**.
+6. **Right away**, log out and use **Sign up** with the admin email and the admin password to create the main admin account. Do this before anyone else can register that email.
+7. After that the admin bar shows **Admin settings** (main admin only).
+
+Notes: Firebase stores passwords safely on Google's servers. The Firebase config is not secret. Authentication is free for normal store traffic.
+
 ## Good to know | ملاحظات
 
 - Upload the whole folder: `index.html`, `store-data.json`, the `img/` folder, `.nojekyll`.
